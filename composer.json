@@ -1,0 +1,28 @@
+{
+    "name": "zalas/symfonify",
+    "type": "composer-plugin",
+    "description": "Sets up a small Symfony application in your project.",
+    "homepage": "https://github.com/jakzal/symfonify",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakub Zalas",
+            "email": "jakub@zalas.pl"
+        }
+    ],
+    "require": {
+        "php": "^5.5|^7.0",
+        "composer-plugin-api": "^1.0"
+    },
+     "autoload": {
+        "psr-4": {
+            "Zalas\\Composer\\": "src/"
+        }
+    },
+    "extra": {
+        "class": "Zalas\\Composer\\SymfonifyPlugin",
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
