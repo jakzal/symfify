@@ -1,0 +1,2 @@
+# Symfonify composer plugin
+
