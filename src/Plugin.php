@@ -5,6 +5,7 @@ namespace Zalas\Symfify\Composer;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\Capable;
+use Composer\Plugin\Capability\CommandProvider as CapabilityCommandProvider;
 use Composer\Plugin\PluginInterface;
 
 class Plugin implements PluginInterface, Capable
@@ -21,5 +22,8 @@ class Plugin implements PluginInterface, Capable
      */
     public function getCapabilities()
     {
+        return [
+            CapabilityCommandProvider::class => CommandProvider::class,
+        ];
     }
 }
