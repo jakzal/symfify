@@ -1,2 +1,2 @@
-# Symfonify composer plugin
+# Symfify composer plugin
 

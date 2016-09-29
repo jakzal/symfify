@@ -1,8 +1,8 @@
 {
-    "name": "zalas/symfonify",
+    "name": "zalas/symfify",
     "type": "composer-plugin",
     "description": "Sets up a small Symfony application in your project.",
-    "homepage": "https://github.com/jakzal/symfonify",
+    "homepage": "https://github.com/jakzal/symfify",
     "license": "MIT",
     "authors": [
         {
@@ -20,7 +20,7 @@
         }
     },
     "extra": {
-        "class": "Zalas\\Composer\\SymfonifyPlugin",
+        "class": "Zalas\\Composer\\SymfifyPlugin",
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
