@@ -14,15 +14,34 @@
         "php": "^5.5||^7.0",
         "composer-plugin-api": "^1.0"
     },
-     "autoload": {
+    "require-dev": {
+        "tm/tooly-composer-script": "^1.0"
+    },
+    "autoload": {
         "psr-4": {
             "Zalas\\Composer\\": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
+        "post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
     },
     "extra": {
         "class": "Zalas\\Composer\\SymfifyPlugin",
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "tools": {
+            "phpunit": {
+                "url": "https://phar.phpunit.de/phpunit.phar",
+                "sign-url": "https://phar.phpunit.de/phpunit.phar.asc",
+                "only-dev": true
+            },
+            "phpunit-old": {
+                "url": "https://phar.phpunit.de/phpunit-old.phar",
+                "sign-url": "https://phar.phpunit.de/phpunit-old.phar.asc",
+                "only-dev": true
+            }
         }
     }
 }
