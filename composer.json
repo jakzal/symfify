@@ -15,7 +15,8 @@
         "composer-plugin-api": "^1.0"
     },
     "require-dev": {
-        "tm/tooly-composer-script": "^1.0"
+        "tm/tooly-composer-script": "^1.0",
+        "composer/composer": "^1.2"
     },
     "autoload": {
         "psr-4": {
