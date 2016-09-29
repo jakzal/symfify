@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Zalas\\Composer\\": "src/"
+            "Zalas\\Symfify\\Composer\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Zalas\\Composer\\": "tests/"
+            "Zalas\\Symfify\\Composer\\": "tests/"
         }
     },
     "scripts": {
@@ -33,7 +33,7 @@
         "post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
     },
     "extra": {
-        "class": "Zalas\\Composer\\SymfifyPlugin",
+        "class": "Zalas\\Symfify\\Composer\\Plugin",
         "branch-alias": {
             "dev-master": "1.0-dev"
         },
