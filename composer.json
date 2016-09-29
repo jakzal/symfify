@@ -22,6 +22,11 @@
             "Zalas\\Composer\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Zalas\\Composer\\": "tests/"
+        }
+    },
     "scripts": {
         "post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
         "post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
