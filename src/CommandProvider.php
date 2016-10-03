@@ -12,5 +12,8 @@ class CommandProvider implements CapabilityCommandProvider
      */
     public function getCommands()
     {
+        return [
+            new SymfifyCommand(),
+        ];
     }
 }
