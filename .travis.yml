@@ -1,0 +1,27 @@
+sudo: false
+
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+      env: deps=low
+
+before_script:
+  - phpenv config-rm xdebug.ini
+  - if [[ "$deps" = "low" ]]; then composer update --prefer-lowest --prefer-stable; else composer install; fi
+  - if [[ $TRAVIS_PHP_VERSION =~ 5.5 ]] ; then rm ./vendor/bin/phpunit; ln -s ./vendor/bin/phpunit-old ./vendor/bin/phpunit fi;
+
+script:
+  - ./vendor/bin/phpunit
