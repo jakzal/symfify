@@ -5,6 +5,8 @@ build:
         php:
             version: '7.0.0'
     project_setup:
+        after:
+            - ln -s ./vendor/bin/phpunit.phar ./vendor/bin/phpunit
     tests:
         override:
             -
