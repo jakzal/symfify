@@ -3,6 +3,7 @@
 namespace Zalas\Symfify\Composer;
 
 use Composer\Command\BaseCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -19,11 +20,19 @@ class SymfifyCommand extends BaseCommand
     protected function configure()
     {
         $this->setName('symfify');
+        $this->addArgument('path', InputArgument::REQUIRED, 'Path to symfify');
+        $this->setDescription('Sets up a basic Symfony project in a code base that did not start as a Symfony project.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln(sprintf('<info>Symfify</info> version <comment>%s</comment>', self::VERSION));
+
+        $path = $input->getArgument('path');
+
+        if (!is_dir($path) || !chdir($path)) {
+            throw new \InvalidArgumentException(sprintf('The given directory path does not exist: "%s".', $path));
+        }
 
         $this->installDependencies($output);
         $this->createDirectories($output);

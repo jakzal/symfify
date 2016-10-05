@@ -13,25 +13,26 @@ use Symfony\Component\Process\Process;
  */
 class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     private $workDir;
 
-    private $projectDir;
-
+    /**
+     * @var Process|null
+     */
     private $process;
 
     protected function setUp()
     {
-        $this->projectDir = getcwd();
         $this->workDir = realpath(sys_get_temp_dir()).'/symfify';
         $fs = new Filesystem();
         $fs->remove($this->workDir);
         $fs->mkdir($this->workDir);
-        chdir($this->workDir);
     }
 
     protected function tearDown()
     {
-        chdir($this->projectDir);
         (new Filesystem())->remove($this->workDir);
 
         if (null !== $this->process) {
@@ -47,10 +48,25 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('symfify', $command->getName());
     }
 
+    /**
+     * @expectedException \Symfony\Component\Console\Exception\RuntimeException
+     */
+    public function test_the_path_is_required()
+    {
+        $this->executeCommand([]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function test_it_throws_an_invalid_argument_exception_if_the_path_does_not_exist()
+    {
+        $this->executeCommand(['path' => '/tmp/foobarbazampf']);
+    }
+
     public function test_it_sets_up_a_working_symfony_app()
     {
-        $commandTester = $this->createCommandTester();
-        $commandTester->execute(['command' => 'symfify']);
+        $commandTester = $this->executeCommand(['path' => $this->workDir]);
 
         $this->startWebServer();
 
@@ -64,6 +80,19 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($this->workDir.'/src/AppKernel.php', 'The kernel file is created.');
         $this->assertFileExists($this->workDir.'/web/index.php', 'The front controller is created.');
         $this->assertRegExp('/Hello!/smi', $response);
+    }
+
+    /**
+     * @param array $input
+     *
+     * @return CommandTester
+     */
+    private function executeCommand(array $input)
+    {
+        $commandTester = $this->createCommandTester();
+        $commandTester->execute(array_merge(['command' => 'symfify'], $input));
+
+        return $commandTester;
     }
 
     /**
