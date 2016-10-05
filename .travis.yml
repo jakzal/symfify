@@ -5,6 +5,11 @@ language: php
 cache:
   directories:
     - $HOME/.composer/cache/files
+  environment:
+    elasticsearch: false
+    redis: false
+    postgresql: false
+
 
 php:
   - 5.5
