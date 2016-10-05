@@ -26,7 +26,7 @@ matrix:
 before_script:
   - phpenv config-rm xdebug.ini || echo "XDebug already disabled"
   - if [[ "$deps" = "low" ]]; then composer update --prefer-lowest --prefer-stable; else composer install; fi
-  - if [[ $TRAVIS_PHP_VERSION =~ 5.5 ]] ; then rm ./vendor/bin/phpunit; ln -sF phpunit-old.phar ./vendor/bin/phpunit; else rm ./vendor/bin/phpunit; ln -sF phpunit.phar ./vendor/bin/phpunit; fi; chmod + x ./vendor/bin/phpunit
+  - if [[ $TRAVIS_PHP_VERSION =~ 5.5 ]] ; then rm ./vendor/bin/phpunit; ln -sF phpunit-old.phar ./vendor/bin/phpunit; else rm ./vendor/bin/phpunit; ln -sF phpunit.phar ./vendor/bin/phpunit; fi; chmod +x ./vendor/bin/phpunit
 
 script:
   - ./vendor/bin/phpunit

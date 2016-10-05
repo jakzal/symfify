@@ -6,7 +6,7 @@ build:
             version: '7.0.0'
     project_setup:
         after:
-            - rm ./vendor/bin/phpunit; ln -sF phpunit.phar ./vendor/bin/phpunit; chmod + x ./vendor/bin/phpunit
+            - rm ./vendor/bin/phpunit; ln -sF phpunit.phar ./vendor/bin/phpunit; chmod +x ./vendor/bin/phpunit
     tests:
         override:
             -
