@@ -15,7 +15,7 @@ use Zalas\Symfify\Composer\SymfifyStep\InstallDependenciesStep;
 
 class SymfifyCommand extends BaseCommand
 {
-    const VERSION = '1.0.0-dev';
+    const VERSION = '1.0.0';
 
     protected function configure()
     {
