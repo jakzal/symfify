@@ -1,7 +1,7 @@
 {
     "name": "zalas/symfify",
     "type": "composer-plugin",
-    "description": "Sets up a small Symfony application in your project.",
+    "description": "Sets up a basic Symfony project in a code base that did not start as a Symfony project.",
     "homepage": "https://github.com/jakzal/symfify",
     "license": "MIT",
     "authors": [
@@ -12,7 +12,9 @@
     ],
     "require": {
         "php": "^5.5||^7.0",
-        "composer-plugin-api": "^1.0"
+        "composer-plugin-api": "^1.0",
+        "symfony/console": "^2.7||^3.0",
+        "symfony/filesystem": "^2.7||^3.0"
     },
     "require-dev": {
         "tm/tooly-composer-script": "^1.0",

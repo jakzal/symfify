@@ -66,19 +66,12 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_sets_up_a_working_symfony_app()
     {
-        $commandTester = $this->executeCommand(['path' => $this->workDir]);
+        $this->executeCommand(['path' => $this->workDir]);
 
         $this->startWebServer();
 
         $response = $this->httpGet('http://localhost:8000/');
 
-        $this->assertContains('Installing symfony/framework-bundle', $commandTester->getDisplay());
-        $this->assertFileExists($this->workDir.'/composer.json', 'Composer json is created.');
-        $this->assertFileExists($this->workDir.'/vendor', 'Vendors are installed.');
-        $this->assertFileExists($this->workDir.'/var/cache', 'The cache directory is created.');
-        $this->assertFileExists($this->workDir.'/var/logs', 'The logs directory is created.');
-        $this->assertFileExists($this->workDir.'/src/AppKernel.php', 'The kernel file is created.');
-        $this->assertFileExists($this->workDir.'/web/index.php', 'The front controller is created.');
         $this->assertRegExp('/Hello!/smi', $response);
     }
 
