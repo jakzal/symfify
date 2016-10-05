@@ -15,6 +15,9 @@ class InstallDependenciesStepTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(SymfifyStep::class, new InstallDependenciesStep($this->output()->reveal()));
     }
 
+    /**
+     * @group slow
+     */
     public function test_it_installs_dependencies()
     {
         $step = new InstallDependenciesStep($this->output()->reveal(), ['symfony/debug']);

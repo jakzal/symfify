@@ -64,6 +64,9 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
         $this->executeCommand(['path' => '/tmp/foobarbazampf']);
     }
 
+    /**
+     * @group slow
+     */
     public function test_it_sets_up_a_working_symfony_app()
     {
         $this->executeCommand(['path' => $this->workDir]);
