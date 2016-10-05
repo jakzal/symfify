@@ -29,6 +29,6 @@ class InstallDependenciesStep implements SymfifyStep
     {
         $this->output->writeln(sprintf('Installing <comment>%s</comment>', implode('</comment>, <comment>', $this->dependencies)));
 
-        system(sprintf('composer require -q %s', implode(' ', $this->dependencies)));
+        system(sprintf('composer require -q %s', implode(' ', array_map('escapeshellarg', $this->dependencies))));
     }
 }
