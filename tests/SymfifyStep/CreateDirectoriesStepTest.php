@@ -39,6 +39,17 @@ class CreateDirectoriesStepTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \RuntimeException
+     */
+    public function test_it_throws_a_runtime_exception_if_directory_cannot_be_created()
+    {
+        file_put_contents($this->workDir.'/web', 'FOO');
+
+        $step = new CreateDirectoriesStep($this->output()->reveal());
+        $step->__invoke();
+    }
+
+    /**
      * @return OutputInterface|ObjectProphecy
      */
     private function output()
