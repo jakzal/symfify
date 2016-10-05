@@ -1,0 +1,37 @@
+inherit: true
+
+build:
+    environment:
+        php:
+            version: '7.0.0'
+    project_setup:
+    tests:
+        override:
+            -
+                command: './vendor/bin/phpunit --coverage-clover=coverage.xml'
+                coverage:
+                    file: 'coverage.xml'
+                    format: 'php-clover'
+
+filter:
+    paths: [src/*]
+
+build_failure_conditions:
+    - 'elements.rating(<= B).new.exists'
+    - 'issues.label("coding-style").new.exists'
+    - 'issues.severity(>= MAJOR).new.exists'
+
+checks:
+    php: true
+
+tools:
+    php_code_sniffer: { config: { standard: psr2 } }
+    php_cs_fixer: { config: { level: psr2 } }
+    external_code_coverage: false
+    php_code_coverage: true
+    php_changetracking: true
+    php_sim: true
+    php_mess_detector: true
+    php_pdepend: true
+    php_analyzer: true
+    sensiolabs_security_checker: true
