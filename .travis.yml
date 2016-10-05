@@ -19,7 +19,7 @@ matrix:
       env: deps=low
 
 before_script:
-  - phpenv config-rm xdebug.ini
+  - phpenv config-rm xdebug.ini || echo "XDebug already disabled"
   - if [[ "$deps" = "low" ]]; then composer update --prefer-lowest --prefer-stable; else composer install; fi
   - if [[ $TRAVIS_PHP_VERSION =~ 5.5 ]] ; then ln -s ./vendor/bin/phpunit-old.phar ./vendor/bin/phpunit; else ln -s ./vendor/bin/phpunit.phar ./vendor/bin/phpunit; fi;
 
