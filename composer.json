@@ -17,7 +17,6 @@
         "symfony/filesystem": "^2.8||^3.0||^4.0"
     },
     "require-dev": {
-        "tm/tooly-composer-script": "^1.0",
         "composer/composer": "^1.2"
     },
     "autoload": {
@@ -31,25 +30,13 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
-        "post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
+        "post-install-cmd": "make tools",
+        "post-update-cmd": "make tools"
     },
     "extra": {
         "class": "Zalas\\Symfify\\Composer\\Plugin",
         "branch-alias": {
             "dev-master": "2.0-dev"
-        },
-        "tools": {
-            "phpunit": {
-                "url": "https://phar.phpunit.de/phpunit.phar",
-                "sign-url": "https://phar.phpunit.de/phpunit.phar.asc",
-                "only-dev": true
-            },
-            "phpunit-old": {
-                "url": "https://phar.phpunit.de/phpunit-old.phar",
-                "sign-url": "https://phar.phpunit.de/phpunit-old.phar.asc",
-                "only-dev": true
-            }
         }
     }
 }
