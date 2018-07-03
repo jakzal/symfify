@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
+use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Console\Output\OutputInterface;
 use Zalas\Symfify\Composer\SymfifyStep;
 
-class CreateDirectoriesStepTest extends \PHPUnit_Framework_TestCase
+class CreateDirectoriesStepTest extends TestCase
 {
     use WorkDir;
 
@@ -28,7 +31,7 @@ class CreateDirectoriesStepTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_ignores_already_created_directories()
     {
-        mkdir($this->workDir.'/web', 0777);
+        \mkdir($this->workDir.'/web', 0777);
 
         $step = new CreateDirectoriesStep($this->output()->reveal());
         $step->__invoke();
@@ -43,7 +46,7 @@ class CreateDirectoriesStepTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_throws_a_runtime_exception_if_directory_cannot_be_created()
     {
-        file_put_contents($this->workDir.'/web', 'FOO');
+        \file_put_contents($this->workDir.'/web', 'FOO');
 
         $step = new CreateDirectoriesStep($this->output()->reveal());
         $step->__invoke();

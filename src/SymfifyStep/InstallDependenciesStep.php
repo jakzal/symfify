@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
 use Symfony\Component\Console\Output\OutputInterface;
@@ -27,8 +29,8 @@ class InstallDependenciesStep implements SymfifyStep
 
     public function __invoke()
     {
-        $this->output->writeln(sprintf('Installing <comment>%s</comment>', implode('</comment>, <comment>', $this->dependencies)));
+        $this->output->writeln(\sprintf('Installing <comment>%s</comment>', \implode('</comment>, <comment>', $this->dependencies)));
 
-        system(sprintf('composer require -q %s', implode(' ', array_map('escapeshellarg', $this->dependencies))));
+        \system(\sprintf('composer require -q %s', \implode(' ', \array_map('escapeshellarg', $this->dependencies))));
     }
 }

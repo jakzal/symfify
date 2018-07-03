@@ -1,22 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
+use PHPUnit\Framework\TestCase;
 use Zalas\Symfify\Composer\SymfifyStep;
 
-class ChangeWorkingDirectoryStepTest extends \PHPUnit_Framework_TestCase
+class ChangeWorkingDirectoryStepTest extends TestCase
 {
     public function test_it_is_a_symfify_step()
     {
-        $this->assertInstanceOf(SymfifyStep::class, new ChangeWorkingDirectoryStep(sys_get_temp_dir()));
+        $this->assertInstanceOf(SymfifyStep::class, new ChangeWorkingDirectoryStep(\sys_get_temp_dir()));
     }
 
     public function test_it_changes_the_working_directory()
     {
-        $step = new ChangeWorkingDirectoryStep(sys_get_temp_dir());
+        $step = new ChangeWorkingDirectoryStep(\sys_get_temp_dir());
         $step();
 
-        $this->assertSame(realpath(sys_get_temp_dir()), realpath(getcwd()));
+        $this->assertSame(\realpath(\sys_get_temp_dir()), \realpath(\getcwd()));
     }
 
     /**

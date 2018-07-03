@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer;
 
 use Composer\Command\BaseCommand;
@@ -9,8 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Zalas\Symfify\Composer\SymfifyStep\ChangeWorkingDirectoryStep;
 use Zalas\Symfify\Composer\SymfifyStep\CreateDirectoriesStep;
 use Zalas\Symfify\Composer\SymfifyStep\CreateFilesStep;
-use Zalas\Symfify\Composer\SymfifyStep\CreateFrontControllerStep;
-use Zalas\Symfify\Composer\SymfifyStep\CreateKernelStep;
 use Zalas\Symfify\Composer\SymfifyStep\InstallDependenciesStep;
 
 class SymfifyCommand extends BaseCommand
@@ -26,7 +26,7 @@ class SymfifyCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln(sprintf('<info>Symfify</info> version <comment>%s</comment>', self::VERSION));
+        $output->writeln(\sprintf('<info>Symfify</info> version <comment>%s</comment>', self::VERSION));
         $output->writeln('');
 
         $steps = [
@@ -36,7 +36,7 @@ class SymfifyCommand extends BaseCommand
             new CreateFilesStep($output),
         ];
 
-        array_walk($steps, function (SymfifyStep $step) {
+        \array_walk($steps, function (SymfifyStep $step) {
             $step();
         });
     }

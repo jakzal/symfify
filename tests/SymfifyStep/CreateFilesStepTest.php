@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
+use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Console\Output\OutputInterface;
 use Zalas\Symfify\Composer\SymfifyStep;
 
-class CreateFilesStepTest extends \PHPUnit_Framework_TestCase
+class CreateFilesStepTest extends TestCase
 {
     use WorkDir;
 
@@ -21,12 +24,12 @@ class CreateFilesStepTest extends \PHPUnit_Framework_TestCase
     {
         $this->createDirectories();
 
-        file_put_contents($this->files[0], 'FOO');
+        \file_put_contents($this->files[0], 'FOO');
 
         $step = new CreateFilesStep($this->output()->reveal(), $this->files);
         $step();
 
-        $this->assertSame('FOO', file_get_contents($this->files[0]));
+        $this->assertSame('FOO', \file_get_contents($this->files[0]));
     }
 
     public function test_it_creates_files()
@@ -55,7 +58,7 @@ class CreateFilesStepTest extends \PHPUnit_Framework_TestCase
     private function createDirectories()
     {
         foreach ($this->files as $file) {
-            mkdir(dirname($this->workDir . '/' . $file), 0777, true);
+            \mkdir(\dirname($this->workDir . '/' . $file), 0777, true);
         }
     }
 
