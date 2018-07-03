@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
+use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Console\Output\OutputInterface;
 use Zalas\Symfify\Composer\SymfifyStep;
 
-class InstallDependenciesStepTest extends \PHPUnit_Framework_TestCase
+class InstallDependenciesStepTest extends TestCase
 {
     use WorkDir;
 

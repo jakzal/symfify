@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer;
 
+use Composer\Plugin\Capability\CommandProvider as CapabilityCommandProvider;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
-use Composer\Plugin\Capability\CommandProvider as CapabilityCommandProvider;
+use PHPUnit\Framework\TestCase;
 
-class PluginTest extends \PHPUnit_Framework_TestCase
+class PluginTest extends TestCase
 {
     public function test_it_is_a_composer_plugin()
     {

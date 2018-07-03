@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer;
 
 use Composer\Plugin\Capability\CommandProvider as CapabilityCommandProvider;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 
-class CommandProviderTest extends \PHPUnit_Framework_TestCase
+class CommandProviderTest extends TestCase
 {
     public function test_it_is_a_composer_command_provider()
     {
@@ -35,6 +38,6 @@ class CommandProviderTest extends \PHPUnit_Framework_TestCase
             }
         }
 
-        throw new \LogicException(sprintf('Expected "%s" command to be found on the list of commands.', $class));
+        throw new \LogicException(\sprintf('Expected "%s" command to be found on the list of commands.', $class));
     }
 }

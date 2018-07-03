@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -16,12 +18,12 @@ trait WorkDir
      */
     protected function prepareWorkDir()
     {
-        $this->workDir = realpath(sys_get_temp_dir()).'/symfify';
+        $this->workDir = \realpath(\sys_get_temp_dir()).'/symfify';
         $fs = new Filesystem();
         $fs->remove($this->workDir);
         $fs->mkdir($this->workDir);
 
-        chdir($this->workDir);
+        \chdir($this->workDir);
     }
 
     /**

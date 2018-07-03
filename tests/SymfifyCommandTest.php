@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer;
 
 use Composer\Command\BaseCommand;
 use Composer\Console\Application;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
@@ -11,7 +14,7 @@ use Symfony\Component\Process\Process;
 /**
  * @group integration
  */
-class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
+class SymfifyCommandTest extends TestCase
 {
     /**
      * @var string
@@ -25,7 +28,7 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->workDir = realpath(sys_get_temp_dir()).'/symfify';
+        $this->workDir = \realpath(\sys_get_temp_dir()).'/symfify';
         $fs = new Filesystem();
         $fs->remove($this->workDir);
         $fs->mkdir($this->workDir);
@@ -86,7 +89,7 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
     private function executeCommand(array $input)
     {
         $commandTester = $this->createCommandTester();
-        $commandTester->execute(array_merge(['command' => 'symfify'], $input));
+        $commandTester->execute(\array_merge(['command' => 'symfify'], $input));
 
         return $commandTester;
     }
@@ -107,7 +110,7 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
         $this->process = new Process('php -S localhost:8000 -t web', $this->workDir);
         $this->process->start();
 
-        sleep(1);
+        \sleep(1);
     }
 
     /**
@@ -117,6 +120,6 @@ class SymfifyCommandTest extends \PHPUnit_Framework_TestCase
      */
     private function httpGet($url)
     {
-        return (string) @file_get_contents($url);
+        return (string) @\file_get_contents($url);
     }
 }
