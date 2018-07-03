@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,16 +33,16 @@ class CreateDirectoriesStep implements SymfifyStep
      */
     private function createDirectory($path)
     {
-        if (is_dir($path)) {
-            $this->output->writeln(sprintf('The <comment>%s</comment> directory already exists', $path));
+        if (\is_dir($path)) {
+            $this->output->writeln(\sprintf('The <comment>%s</comment> directory already exists', $path));
 
             return;
         }
 
-        $this->output->writeln(sprintf('Creating the <comment>%s</comment> directory', $path));
+        $this->output->writeln(\sprintf('Creating the <comment>%s</comment> directory', $path));
 
-        if (!@mkdir($path, 0777, true) && !@is_dir($path)) {
-            throw new \RuntimeException(sprintf('Failed to create the "%s" directory.', $path));
+        if (!@\mkdir($path, 0777, true) && !@\is_dir($path)) {
+            throw new \RuntimeException(\sprintf('Failed to create the "%s" directory.', $path));
         }
     }
 }

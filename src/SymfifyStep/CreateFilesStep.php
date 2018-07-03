@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zalas\Symfify\Composer\SymfifyStep;
 
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,20 +37,20 @@ class CreateFilesStep implements SymfifyStep
      */
     private function createFile($file)
     {
-        if (file_exists($file)) {
-            $this->output->writeln(sprintf('The file already exists: <comment>%s</comment>', $file));
+        if (\file_exists($file)) {
+            $this->output->writeln(\sprintf('The file already exists: <comment>%s</comment>', $file));
 
             return;
         }
 
         $templateFile = __DIR__ . '/../../templates/' . $file;
 
-        if (!file_exists($templateFile)) {
-            throw new \InvalidArgumentException(sprintf('The template file not found: "%s".', $templateFile));
+        if (!\file_exists($templateFile)) {
+            throw new \InvalidArgumentException(\sprintf('The template file not found: "%s".', $templateFile));
         }
 
-        $this->output->writeln(sprintf('Creating <comment>%s</comment>', $file));
+        $this->output->writeln(\sprintf('Creating <comment>%s</comment>', $file));
 
-        file_put_contents($file, file_get_contents($templateFile));
+        \file_put_contents($file, \file_get_contents($templateFile));
     }
 }
